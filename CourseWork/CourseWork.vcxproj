@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClCompile Include="CourseWork.cpp" />
     <ClCompile Include="DataGenerator.cpp" />
+    <ClCompile Include="MergeSort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataGenerator.h" />
     <ClInclude Include="FileWorker.h" />
+    <ClInclude Include="MergeSort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
