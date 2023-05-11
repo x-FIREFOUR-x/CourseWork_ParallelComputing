@@ -7,9 +7,21 @@
 #include "MergeSort.h"
 
 using namespace std;
-int main(int *args, char *argv[])
+int main(int args, char *argv[])
 {
-	cout << _OPENMP;
+	cout << _OPENMP << endl;
+
+	string filename;
+	cout << "Filename: ";
+	cin >> filename;
+
+	int countThread;
+	cout << "Threds: ";
+	cin >> countThread;
+
+	int size = 0;
+	int* arr = FileWorker<int>::readArray(filename, size);
+	MergeSort::sort(arr, size);
 
 	/*
 	//vector<int> array = DataGenerator::randomGenerateArray(1000000, -5, 15);
@@ -31,21 +43,23 @@ int main(int *args, char *argv[])
 	
 	MergeSort::sort(array, size);
 	
-	//MergeSort::ompSort(array2, size, 1);
+	MergeSort::ompSort(array2, size, 1);
 
 	MergeSort::ompSort(array3, size, 4);
 
 	//MergeSort::ompSort(array4, size, 8);
 	*/
+
+#ifndef _MSC_VER
+	int sizeOMP = 0;
+	int* arrayOMP = FileWorker<int>::readArray(filename, sizeOMP);
+
+	MergeSort::ompSort(arrayOMP, sizeOMP, countThread);
+
+	bool eq = std::equal(arrayOMP, arrayOMP + sizeOMP, arr, arr + size);
+	cout << "Is equal: " << eq << endl;
+#endif
 	
-	omp_set_num_threads(4);
-	#pragma omp parallel
-	{
-		int id = omp_get_thread_num();
-		printf("Hello (%d)", id);
-		printf("World (%d)\n", id);
-	}
 	return 0;
-	
 }
 

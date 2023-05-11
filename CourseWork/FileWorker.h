@@ -22,8 +22,13 @@ public:
 
 };
 
+#ifndef _MSC_VER
+template<class T>
+string FileWorker<T>::fileDir = "..\\CourseWork\\Data\\";
+#else
 template<class T>
 string FileWorker<T>::fileDir = "Data\\";
+#endif
 
 template<class T>
 vector<T> FileWorker<T>::readArray(const string filename)
@@ -63,6 +68,13 @@ template<class T>
 T* FileWorker<T>::readArray(const string filename, int& size)
 {
     ifstream file(fileDir + filename);
+
+    if (!file.is_open())
+    {
+        cout << "Failed open file";
+        return nullptr;
+    }
+        
 
     file >> size;
 

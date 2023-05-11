@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 
-int MergeSort::sizeTask = 2500000;
+int MergeSort::sizeTask = 100;
 
 void MergeSort::sort(int* arr, int const size)
 {
@@ -68,6 +68,8 @@ void MergeSort::sortRecursive(int* arr, int const size, int* buff)
 	merge(arr, size, buff);
 }
 
+#ifndef _MSC_VER
+
 void MergeSort::ompSort(int* arr, int const size, int countThreads)
 {
 	omp_set_dynamic(0);
@@ -108,6 +110,8 @@ void MergeSort::ompSortRecursive(int* arr, int const size, int* buff)
 	#pragma omp taskwait
 	merge(arr, size, buff);
 }
+
+#endif
 
 
 
