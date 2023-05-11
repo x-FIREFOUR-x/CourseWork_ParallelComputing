@@ -12,9 +12,13 @@ private:
 	static string fileDir;
 
 public:
-	static vector<T> readArray(string filename);
+	static vector<T> readArray(const string filename);
 
-	static void writeArray(string filename, vector<T> array);
+	static void writeArray(const string filename, vector<T> array);
+
+    static T* readArray(const string filename, int& size);
+
+    static void writeArray(const string filename, const T* array, const int size);
 
 };
 
@@ -22,7 +26,7 @@ template<class T>
 string FileWorker<T>::fileDir = "Data\\";
 
 template<class T>
-vector<T> FileWorker<T>::readArray(string filename)
+vector<T> FileWorker<T>::readArray(const string filename)
 {
     ifstream file(fileDir + filename);
 
@@ -41,7 +45,7 @@ vector<T> FileWorker<T>::readArray(string filename)
 }
 
 template<class T>
-void FileWorker<T>::writeArray(string filename, vector<T> array)
+void FileWorker<T>::writeArray(const string filename, const vector<T> array)
 {
     ofstream file(fileDir + filename);
 
@@ -49,6 +53,39 @@ void FileWorker<T>::writeArray(string filename, vector<T> array)
     for (auto element : array)
     {
         file << element << " ";
+    }
+
+    file.close();
+}
+
+
+template<class T>
+T* FileWorker<T>::readArray(const string filename, int& size)
+{
+    ifstream file(fileDir + filename);
+
+    file >> size;
+
+    T* array = new T[size];
+    int element;
+    for (size_t i = 0; i < size; i++)
+    {
+        file >> element;
+        array[i] = element;
+    }
+
+    return array;
+}
+
+template<class T>
+void FileWorker<T>::writeArray(const string filename, const T* array, const int size)
+{
+    ofstream file(fileDir + filename);
+
+    file << size << "\n";
+    for (size_t i = 0; i < size; i++)
+    {
+        file << array[i] << " ";
     }
 
     file.close();
