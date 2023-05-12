@@ -36,6 +36,9 @@
     <ClCompile Include="OMPMergeSort.cpp">
       <Filter>Source Files\MergeSort</Filter>
     </ClCompile>
+    <ClCompile Include="ThreadMergeSort.cpp">
+      <Filter>Source Files\MergeSort</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileWorker.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files\MergeSort</Filter>
     </ClInclude>
     <ClInclude Include="OMPMergeSort.h">
+      <Filter>Header Files\MergeSort</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadMergeSort.h">
       <Filter>Header Files\MergeSort</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,14 +17,14 @@ void OMPMergeSort::sort(int* arr, const int size, const int countThreads)
 	#pragma omp parallel
 	{
 		#pragma omp single
-		sortRecursive(arr, size, buff);
+		sortRecursive(arr, size, buff, 1);
 	}
 
 	double end_time = omp_get_wtime();
 	cout << (end_time - start_time) << "s omp parallel sort.\n";
 }
 
-void OMPMergeSort::sortRecursive(int* arr, int const size, int* buff)
+void OMPMergeSort::sortRecursive(int* arr, int const size, int* buff, int depthRecursive)
 {
 	if (size == 1)
 		return;
@@ -36,10 +36,10 @@ void OMPMergeSort::sortRecursive(int* arr, int const size, int* buff)
 	}
 
 	#pragma omp task shared(arr) if (size > sizeTask)
-	sortRecursive(arr, size / 2, buff);
+	sortRecursive(arr, size / 2, buff, depthRecursive + 1);
 
 	#pragma omp task shared(arr) if (size > sizeTask)
-	sortRecursive(arr + (size / 2), size - (size / 2), buff + (size / 2));
+	sortRecursive(arr + (size / 2), size - (size / 2), buff + (size / 2), depthRecursive + 1);
 
 	#pragma omp taskwait
 	merge(arr, size, buff);

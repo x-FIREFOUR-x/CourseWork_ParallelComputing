@@ -4,6 +4,7 @@
 #include "FileWorker.h"
 #include "MergeSort.h"
 #include "OMPMergeSort.h"
+#include "ThreadMergeSort.h"
 
 using namespace std;
 int main(int args, char *argv[])
@@ -39,18 +40,34 @@ int main(int args, char *argv[])
 
 	int size = 0;
 	int* arr = FileWorker<int>::readArray(filename, size);
+
+
+	int* arr1 = new int[size];
+	copy(arr, arr + size, arr1);
+
 	MergeSort mergeSort;
-	mergeSort.sort(arr, size);
+	mergeSort.sort(arr1, size);
+
+
+	int* arr2 = new int[size];
+	copy(arr, arr + size, arr2);
+
+	ThreadMergeSort threadMergeSort;
+	threadMergeSort.sort(arr2, size, countThread);
+
+	bool sortThreadCorrect = std::equal(arr1, arr1 + size, arr2, arr2 + size);
+	cout << "Is equal: " << sortThreadCorrect << endl;
+
 
 #ifndef _MSC_VER
-	int sizeOMP = 0;
-	int* arrayOMP = FileWorker<int>::readArray(filename, sizeOMP);
+	int* arr3 = new int[size];
+	copy(arr, arr + size, arr3);
 
 	OMPMergeSort ompMergeSort;
-	ompMergeSort.sort(arrayOMP, sizeOMP, countThread);
+	ompMergeSort.sort(arr3, size, countThread);
 
-	bool eq = std::equal(arrayOMP, arrayOMP + sizeOMP, arr, arr + size);
-	cout << "Is equal: " << eq << endl;
+	bool sortOMPCorrect = std::equal(arr1, arr1 + size, arr3, arr3 + size);
+	cout << "Is equal: " << sortOMPCorrect << endl;
 #endif
 	
 	return 0;

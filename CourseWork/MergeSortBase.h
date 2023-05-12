@@ -9,6 +9,6 @@ public:
 protected:
 	void merge(int* arr, const int size, int* buff);
 
-	virtual void sortRecursive(int* arr, const int size, int* buff) = 0;
+	virtual void sortRecursive(int* arr, const int size, int* buff, int depthRecursive) = 0;
 
 };
