@@ -145,12 +145,16 @@
   <ItemGroup>
     <ClCompile Include="CourseWork.cpp" />
     <ClCompile Include="DataGenerator.cpp" />
+    <ClCompile Include="MergeSortBase.cpp" />
     <ClCompile Include="MergeSort.cpp" />
+    <ClCompile Include="OMPMergeSort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataGenerator.h" />
     <ClInclude Include="FileWorker.h" />
+    <ClInclude Include="MergeSortBase.h" />
     <ClInclude Include="MergeSort.h" />
+    <ClInclude Include="OMPMergeSort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\MergeSort">
+      <UniqueIdentifier>{abba8a2d-7e54-4951-a01d-bfaa692fd595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MergeSort">
+      <UniqueIdentifier>{c03ec89f-3e56-407f-abf7-ce2410fcc2a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CourseWork.cpp">
@@ -22,7 +28,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MergeSort.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\MergeSort</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeSortBase.cpp">
+      <Filter>Source Files\MergeSort</Filter>
+    </ClCompile>
+    <ClCompile Include="OMPMergeSort.cpp">
+      <Filter>Source Files\MergeSort</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -33,7 +45,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeSort.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\MergeSort</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeSortBase.h">
+      <Filter>Header Files\MergeSort</Filter>
+    </ClInclude>
+    <ClInclude Include="OMPMergeSort.h">
+      <Filter>Header Files\MergeSort</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

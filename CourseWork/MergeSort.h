@@ -1,34 +1,14 @@
 #pragma once
 
-#include <vector>
+#include "MergeSortBase.h"
 
 using namespace std;
-class MergeSort
+class MergeSort : MergeSortBase
 {
-private:
-	static int sizeTask;
 
 public:
-	static void sort(int* arr, int const size);
+	void sort(int* arr, int const size, const int countThread = 1) override;
 
 private:
-	static void merge(int* arr, int const size, int* buff);
-
-	static void sortRecursive(int* arr, int const size, int* buff);
-
-
-#ifndef _MSC_VER
-
-public:
-	static void ompSort(int* arr, int const size, int countThreads = 4);
-
-private:
-	static void ompSortRecursive(int* arr, int const size, int* buff);
-
-#endif
-
-
-
-	
+	void sortRecursive(int* arr, const int size, int* buff) override;
 };
-

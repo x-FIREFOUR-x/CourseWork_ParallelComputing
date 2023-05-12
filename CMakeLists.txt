@@ -11,4 +11,4 @@ if (OPENMP_FOUND)
     set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 endif()
 
-add_executable(CourseWork CourseWork/CourseWork.cpp CourseWork/MergeSort.cpp CourseWork/DataGenerator.cpp)
+add_executable(CourseWork CourseWork/CourseWork.cpp CourseWork/DataGenerator.cpp CourseWork/MergeSortBase.cpp CourseWork/MergeSort.cpp CourseWork/OMPMergeSort.cpp)
