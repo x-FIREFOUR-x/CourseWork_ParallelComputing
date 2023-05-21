@@ -6,17 +6,23 @@
 #include <thread>
 #include <cmath>
 
-void ThreadMergeSort::sort(int* arr, const int size, const int countThread)
+double ThreadMergeSort::sort(int* arr, const int size, const int countThread)
 {
 	double start_time = omp_get_wtime();
 
 	maxDepth = ceil(log2(countThread));
 
 	int* buff = new int[size];
+
 	sortRecursive(arr, size, buff, 1);
 
+	delete[] buff;
+
 	double end_time = omp_get_wtime();
-	cout << (end_time - start_time) << "s thread parallel sort.\n";
+	double time = end_time - start_time;
+	cout << endl << time << "s thread parallel sort.\n";
+
+	return time;
 }
 
 void ThreadMergeSort::sortRecursive(int* arr, const int size, int* buff, int depthRecursive)

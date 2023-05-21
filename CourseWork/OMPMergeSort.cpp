@@ -6,22 +6,27 @@
 #include <omp.h>
 #include <algorithm>
 
-void OMPMergeSort::sort(int* arr, const int size, const int countThreads)
+double OMPMergeSort::sort(int* arr, const int size, const int countThreads)
 {
-	omp_set_dynamic(0);
-	omp_set_num_threads(countThreads);
-
 	double start_time = omp_get_wtime();
 
 	int* buff = new int[size];
+
+	omp_set_dynamic(0);
+	omp_set_num_threads(countThreads);
 	#pragma omp parallel
 	{
 		#pragma omp single
 		sortRecursive(arr, size, buff, 1);
 	}
 
+	delete[] buff;
+
 	double end_time = omp_get_wtime();
-	cout << (end_time - start_time) << "s omp parallel sort.\n";
+	double time = end_time - start_time;
+	cout << endl << time << "s OpenMP parallel sort.\n";
+
+	return time;
 }
 
 void OMPMergeSort::sortRecursive(int* arr, int const size, int* buff, int depthRecursive)

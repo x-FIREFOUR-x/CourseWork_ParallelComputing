@@ -4,15 +4,21 @@
 #include <iostream>
 #include <algorithm>
 
-void MergeSort::sort(int* arr, const int size, const int)
+double MergeSort::sort(int* arr, const int size, const int)
 {
 	double start_time = omp_get_wtime();
 
 	int* buff = new int[size];
+
 	sortRecursive(arr, size, buff, 1);
 
+	delete[] buff;
+
 	double end_time = omp_get_wtime();
-	cout << (end_time - start_time) << "s non parallel sort.\n";
+	double time = end_time - start_time;
+	cout << endl << time << "s non parallel sort.\n";
+
+	return time;
 }
 
 void MergeSort::sortRecursive(int* arr, const int size, int* buff, int depthRecursive)
