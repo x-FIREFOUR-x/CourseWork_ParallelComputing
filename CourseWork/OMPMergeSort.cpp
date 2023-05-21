@@ -6,11 +6,10 @@
 #include <omp.h>
 #include <algorithm>
 
-double OMPMergeSort::sort(int* arr, const int size, const int countThreads)
+void OMPMergeSort::sort(int* arr, const int size, const int countThreads)
 {
-	double start_time = omp_get_wtime();
-
 	int* buff = new int[size];
+
 	omp_set_dynamic(0);
 	omp_set_num_threads(countThreads);
 	#pragma omp parallel
@@ -18,10 +17,8 @@ double OMPMergeSort::sort(int* arr, const int size, const int countThreads)
 		#pragma omp single
 		sortRecursive(arr, size, buff, 1);
 	}
-	delete[] buff;
 
-	double time = omp_get_wtime() - start_time;
-	return time;
+	delete[] buff;
 }
 
 void OMPMergeSort::sortRecursive(int* arr, int const size, int* buff, int depthRecursive)

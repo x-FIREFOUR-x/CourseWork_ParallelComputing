@@ -1,5 +1,7 @@
 #include <iostream>
 #include <algorithm>
+#include <omp.h>
+
 
 #include "DataGenerator.h"
 #include "FileWorker.h"
@@ -60,8 +62,12 @@ int main(int args, char* argv[])
 	{
 		copy(inputArr, inputArr + size, arr1);
 
+		double start_time = omp_get_wtime();
+
 		MergeSort mergeSort;
-		timeSequential += mergeSort.sort(arr1, size);
+		mergeSort.sort(arr1, size);
+
+		timeSequential += omp_get_wtime() - start_time;
 
 		if (!std::equal(arr1, arr1 + size, correctArr, correctArr + size))
 			sortSequentialCorrect = false;
@@ -79,8 +85,12 @@ int main(int args, char* argv[])
 	{
 		copy(inputArr, inputArr + size, arr2);
 
+		double start_time = omp_get_wtime();
+
 		ThreadMergeSort threadMergeSort;
-		timeThread += threadMergeSort.sort(arr2, size, countThread);
+		threadMergeSort.sort(arr2, size, countThread);
+
+		timeThread += omp_get_wtime() - start_time;
 
 		if (!std::equal(arr2, arr2 + size, correctArr, correctArr + size))
 			sortThreadCorrect = false;
@@ -99,8 +109,12 @@ int main(int args, char* argv[])
 	{
 		copy(inputArr, inputArr + size, arr3);
 
+		double start_time = omp_get_wtime();
+
 		OMPMergeSort ompMergeSort;
-		timeOMP += ompMergeSort.sort(arr3, size, countThread);
+		ompMergeSort.sort(arr3, size, countThread);
+
+		timeOMP += omp_get_wtime() - start_time;
 
 		if (!std::equal(arr3, arr3 + size, correctArr, correctArr + size))
 			sortOMPCorrect = false;

@@ -1,19 +1,15 @@
 #include "MergeSort.h"
 
-#include <omp.h>
 #include <iostream>
 #include <algorithm>
 
-double MergeSort::sort(int* arr, const int size, const int)
+void MergeSort::sort(int* arr, const int size, const int)
 {
-	double start_time = omp_get_wtime();
-
 	int* buff = new int[size];
-	sortRecursive(arr, size, buff, 1);
-	delete[] buff;
 
-	double time = omp_get_wtime() - start_time;
-	return time;
+	sortRecursive(arr, size, buff, 1);
+
+	delete[] buff;
 }
 
 void MergeSort::sortRecursive(int* arr, const int size, int* buff, int depthRecursive)

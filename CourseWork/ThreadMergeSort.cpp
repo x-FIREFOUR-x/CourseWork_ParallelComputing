@@ -1,22 +1,18 @@
 #include "ThreadMergeSort.h"
 
-#include <omp.h>
 #include <iostream>
 #include <algorithm>
 #include <thread>
 #include <cmath>
 
-double ThreadMergeSort::sort(int* arr, const int size, const int countThread)
+void ThreadMergeSort::sort(int* arr, const int size, const int countThread)
 {
-	double start_time = omp_get_wtime();
-
 	maxDepth = ceil(log2(countThread));
 	int* buff = new int[size];
-	sortRecursive(arr, size, buff, 1);
-	delete[] buff;
 
-	double time = omp_get_wtime() - start_time;
-	return time;
+	sortRecursive(arr, size, buff, 1);
+
+	delete[] buff;
 }
 
 void ThreadMergeSort::sortRecursive(int* arr, const int size, int* buff, int depthRecursive)

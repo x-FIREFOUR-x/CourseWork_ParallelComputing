@@ -7,7 +7,7 @@ class MergeSort : MergeSortBase
 {
 
 public:
-	double sort(int* arr, int const size, const int countThread = 1) override;
+	void sort(int* arr, int const size, const int countThread = 1) override;
 
 private:
 	void sortRecursive(int* arr, const int size, int* buff, int depthRecursive) override;

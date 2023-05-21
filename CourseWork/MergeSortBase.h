@@ -4,7 +4,7 @@ using namespace std;
 class MergeSortBase
 {
 public:
-	virtual double sort(int* arr, const int size, int countThreads = 1) = 0;
+	virtual void sort(int* arr, const int size, int countThreads = 1) = 0;
 
 protected:
 	void merge(int* arr, const int size, int* buff);
