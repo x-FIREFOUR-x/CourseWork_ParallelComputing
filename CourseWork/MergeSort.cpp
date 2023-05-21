@@ -9,15 +9,10 @@ double MergeSort::sort(int* arr, const int size, const int)
 	double start_time = omp_get_wtime();
 
 	int* buff = new int[size];
-
 	sortRecursive(arr, size, buff, 1);
-
 	delete[] buff;
 
-	double end_time = omp_get_wtime();
-	double time = end_time - start_time;
-	cout << endl << time << "s non parallel sort.\n";
-
+	double time = omp_get_wtime() - start_time;
 	return time;
 }
 

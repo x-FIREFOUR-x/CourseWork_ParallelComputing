@@ -11,17 +11,11 @@ double ThreadMergeSort::sort(int* arr, const int size, const int countThread)
 	double start_time = omp_get_wtime();
 
 	maxDepth = ceil(log2(countThread));
-
 	int* buff = new int[size];
-
 	sortRecursive(arr, size, buff, 1);
-
 	delete[] buff;
 
-	double end_time = omp_get_wtime();
-	double time = end_time - start_time;
-	cout << endl << time << "s thread parallel sort.\n";
-
+	double time = omp_get_wtime() - start_time;
 	return time;
 }
 
