@@ -1,8 +1,5 @@
 #include "MergeSort.h"
 
-#include <iostream>
-#include <algorithm>
-
 void MergeSort::sort(int* arr, const int size, const int)
 {
 	int* buff = new int[size];

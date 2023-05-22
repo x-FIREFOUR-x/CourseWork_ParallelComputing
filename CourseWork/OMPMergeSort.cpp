@@ -2,9 +2,7 @@
 
 #include "OMPMergeSort.h"
 
-#include <iostream>
 #include <omp.h>
-#include <algorithm>
 
 void OMPMergeSort::sort(int* arr, const int size, const int countThreads)
 {
