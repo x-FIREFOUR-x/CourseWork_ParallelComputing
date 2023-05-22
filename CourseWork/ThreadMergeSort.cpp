@@ -36,5 +36,3 @@ void ThreadMergeSort::sortRecursive(int* arr, const int size, int* buff, int dep
 	
 	merge(arr, size, buff);
 }
-
-

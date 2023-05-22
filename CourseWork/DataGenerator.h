@@ -12,4 +12,3 @@ public:
 
 	static int* randomGenerateArray(int size, int minValue, int maxValue);
 };
-

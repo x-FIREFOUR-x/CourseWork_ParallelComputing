@@ -102,5 +102,3 @@ void FileWorker<T>::writeArray(const string filename, const T* array, const int 
 
     file.close();
 }
-
-

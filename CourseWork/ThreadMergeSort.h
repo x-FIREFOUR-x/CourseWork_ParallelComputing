@@ -2,7 +2,7 @@
 
 #include "MergeSortBase.h"
 
-class ThreadMergeSort : MergeSortBase
+class ThreadMergeSort : public MergeSortBase
 {
 private:
 	int maxDepth;

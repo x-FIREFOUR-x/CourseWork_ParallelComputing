@@ -17,4 +17,5 @@ add_executable(CourseWork
                 CourseWork/MergeSortBase.cpp 
                 CourseWork/MergeSort.cpp 
                 CourseWork/OMPMergeSort.cpp
-                CourseWork/ThreadMergeSort.cpp)
+                CourseWork/ThreadMergeSort.cpp
+		CourseWork/Tester.cpp)

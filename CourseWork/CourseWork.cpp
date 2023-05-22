@@ -2,9 +2,9 @@
 #include <algorithm>
 #include <omp.h>
 
-
 #include "DataGenerator.h"
 #include "FileWorker.h"
+#include "Tester.h"
 #include "MergeSort.h"
 #include "OMPMergeSort.h"
 #include "ThreadMergeSort.h"
@@ -38,95 +38,37 @@ int main(int args, char* argv[])
 	cout << "Filename: ";
 	cin >> filename;
 
-	int countThread;
+	int countThreads;
 	cout << "Threds: ";
-	cin >> countThread;
+	cin >> countThreads;
 
-	int countTest;
+	int countTests;
 	cout << "Count tests: ";
-	cin >> countTest;
+	cin >> countTests;
 
 	int size = 0;
 	int* inputArr = FileWorker<int>::readArray(filename, size);
 
-	int* correctArr = new int[size];
-	copy(inputArr, inputArr + size, correctArr);
-	sort(correctArr, correctArr + size);
-
+	Tester tester(inputArr, size);
 
 	// Sequential merge sort
-	int* arr1 = new int[size];
-	bool sortSequentialCorrect = true;
-	double timeSequential = 0;
-	for (size_t i = 0; i < countTest; i++)
-	{
-		copy(inputArr, inputArr + size, arr1);
-
-		double start_time = omp_get_wtime();
-
-		MergeSort mergeSort;
-		mergeSort.sort(arr1, size);
-
-		timeSequential += omp_get_wtime() - start_time;
-
-		if (!std::equal(arr1, arr1 + size, correctArr, correctArr + size))
-			sortSequentialCorrect = false;
-	}
-	cout << endl << timeSequential / countTest << "s non parallel sort.\n";
-	cout << "Correct: " << sortSequentialCorrect << endl;
-	delete[] arr1;
-
+	cout << "\n<Sequential merge sort>" << endl;
+	MergeSortBase* mergeSort = new MergeSort();
+	tester.testMergeSort(mergeSort, inputArr, size, countTests);
 
 	// Parallel merge sort (Thread)
-	int* arr2 = new int[size];
-	bool sortThreadCorrect = true;
-	double timeThread = 0;
-	for (size_t i = 0; i < countTest; i++)
-	{
-		copy(inputArr, inputArr + size, arr2);
-
-		double start_time = omp_get_wtime();
-
-		ThreadMergeSort threadMergeSort;
-		threadMergeSort.sort(arr2, size, countThread);
-
-		timeThread += omp_get_wtime() - start_time;
-
-		if (!std::equal(arr2, arr2 + size, correctArr, correctArr + size))
-			sortThreadCorrect = false;
-	}
-	cout << endl << timeThread / countTest << "s thread parallel sort.\n";
-	cout << "Correct: " << sortThreadCorrect << endl;
-	delete[] arr2;
-
+	cout << "\n<Parallel merge sort (Thread)>" << endl;
+	MergeSortBase* threadMergeSort = new ThreadMergeSort();
+	tester.testMergeSort(threadMergeSort, inputArr, size, countTests, countThreads);
 
 	// Parallel merge sort (OpenMP)
 #ifndef _MSC_VER
-	int* arr3 = new int[size];
-	bool sortOMPCorrect = true;
-	double timeOMP = 0;
-	for (size_t i = 0; i < countTest; i++)
-	{
-		copy(inputArr, inputArr + size, arr3);
-
-		double start_time = omp_get_wtime();
-
-		OMPMergeSort ompMergeSort;
-		ompMergeSort.sort(arr3, size, countThread);
-
-		timeOMP += omp_get_wtime() - start_time;
-
-		if (!std::equal(arr3, arr3 + size, correctArr, correctArr + size))
-			sortOMPCorrect = false;
-	}
-	cout << endl << timeOMP / countTest << "s OpenMP parallel sort.\n";
-	cout << "Correct: " << sortOMPCorrect << endl;
-	delete[] arr3;
+	cout << "\n<Parallel merge sort (OpenMP)>" << endl;
+	MergeSortBase* ompMergeSort = new OMPMergeSort();
+	tester.testMergeSort(ompMergeSort, inputArr, size, countTests, countThreads);
 #endif
 
 	delete[] inputArr;
-	delete[] correctArr;
-	
+
 	return 0;
 }
-

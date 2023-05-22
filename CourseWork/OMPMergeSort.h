@@ -6,7 +6,7 @@
 #include "MergeSort.h"
 
 using namespace std;
-class OMPMergeSort : MergeSortBase
+class OMPMergeSort : public MergeSortBase
 {
 private:
 	const int sizeTask = 1000;
