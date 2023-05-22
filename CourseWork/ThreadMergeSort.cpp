@@ -1,7 +1,5 @@
 #include "ThreadMergeSort.h"
 
-#include <iostream>
-#include <algorithm>
 #include <thread>
 #include <cmath>
 
@@ -10,7 +8,8 @@ void ThreadMergeSort::sort(int* arr, const int size, const int countThread)
 	maxDepth = ceil(log2(countThread));
 	int* buff = new int[size];
 
-	sortRecursive(arr, size, buff, 1);
+	thread th([=](){sortRecursive(arr, size, buff, 1);});
+	th.join();
 
 	delete[] buff;
 }
@@ -28,12 +27,7 @@ void ThreadMergeSort::sortRecursive(int* arr, const int size, int* buff, int dep
 	}
 	else
 	{
-		auto lamda = [=, &depthRecursive]()
-		{
-			sortRecursive(arr, size / 2, buff, depthRecursive + 1);
-		};
-
-		thread th(lamda);
+		thread th([=, &depthRecursive](){sortRecursive(arr, size / 2, buff, depthRecursive + 1);});
 
 		sortRecursive(arr + (size / 2), size - (size / 2), buff + (size / 2), depthRecursive + 1);
 
