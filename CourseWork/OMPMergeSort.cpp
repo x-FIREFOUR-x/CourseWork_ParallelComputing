@@ -23,12 +23,9 @@ void OMPMergeSort::sort(int* arr, const int size, const int countThreads)
 
 void OMPMergeSort::sortRecursive(int* arr, int const size, int* buff, int depthRecursive)
 {
-	if (size == 1)
-		return;
-
 	if (size <= sizeTask)
 	{
-		std::sort(arr, arr + size);
+		mergeSort.sort(arr, size);
 		return;
 	}
 
