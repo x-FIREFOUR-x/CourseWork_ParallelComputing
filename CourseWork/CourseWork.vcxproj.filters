@@ -19,14 +19,14 @@
     <Filter Include="Source Files\MergeSort">
       <UniqueIdentifier>{c03ec89f-3e56-407f-abf7-ce2410fcc2a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\HelpTool">
+      <UniqueIdentifier>{752d1cda-1300-49f5-be38-11cd642c9b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HelpTool">
+      <UniqueIdentifier>{576ab71e-c70e-409e-a909-8267f86453ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CourseWork.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DataGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MergeSort.cpp">
       <Filter>Source Files\MergeSort</Filter>
     </ClCompile>
@@ -39,14 +39,17 @@
     <ClCompile Include="ThreadMergeSort.cpp">
       <Filter>Source Files\MergeSort</Filter>
     </ClCompile>
+    <ClCompile Include="DataGenerator.cpp">
+      <Filter>Source Files\HelpTool</Filter>
+    </ClCompile>
+    <ClCompile Include="CourseWork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tester.cpp">
+      <Filter>Source Files\HelpTool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FileWorker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DataGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MergeSort.h">
       <Filter>Header Files\MergeSort</Filter>
     </ClInclude>
@@ -58,6 +61,15 @@
     </ClInclude>
     <ClInclude Include="ThreadMergeSort.h">
       <Filter>Header Files\MergeSort</Filter>
+    </ClInclude>
+    <ClInclude Include="DataGenerator.h">
+      <Filter>Header Files\HelpTool</Filter>
+    </ClInclude>
+    <ClInclude Include="FileWorker.h">
+      <Filter>Header Files\HelpTool</Filter>
+    </ClInclude>
+    <ClInclude Include="Tester.h">
+      <Filter>Header Files\HelpTool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

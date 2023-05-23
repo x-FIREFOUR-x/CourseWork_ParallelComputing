@@ -148,6 +148,7 @@
     <ClCompile Include="MergeSortBase.cpp" />
     <ClCompile Include="MergeSort.cpp" />
     <ClCompile Include="OMPMergeSort.cpp" />
+    <ClCompile Include="Tester.cpp" />
     <ClCompile Include="ThreadMergeSort.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="MergeSortBase.h" />
     <ClInclude Include="MergeSort.h" />
     <ClInclude Include="OMPMergeSort.h" />
+    <ClInclude Include="Tester.h" />
     <ClInclude Include="ThreadMergeSort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
