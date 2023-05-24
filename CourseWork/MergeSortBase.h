@@ -1,13 +1,56 @@
 #pragma once
 
+#include <iostream>
+#include <algorithm>
+
 using namespace std;
+
+template <class T>
 class MergeSortBase
 {
 public:
-	virtual void sort(int* arr, const int size, int countThreads = 1) = 0;
+	virtual void sort(T* arr, const int size, int countThreads = 1) = 0;
 
 protected:
-	void merge(int* arr, const int size, int* buff);
+	void merge(T* arr, const int size, T* buff)
+	{
+		int mid = size / 2;
 
-	virtual void sortRecursive(int* arr, const int size, int* buff, int depthRecursive) = 0;
+		int indexLeftArray = 0;
+		int indexRightArray = mid;
+
+		int indexBuff = 0;
+		while (indexLeftArray < mid && indexRightArray < size)
+		{
+			if (arr[indexLeftArray] < arr[indexRightArray])
+			{
+				buff[indexBuff] = arr[indexLeftArray];
+				indexLeftArray++;
+				indexBuff++;
+			}
+			else
+			{
+				buff[indexBuff] = arr[indexRightArray];
+				indexRightArray++;
+				indexBuff++;
+			}
+		}
+
+		while (indexLeftArray < mid)
+		{
+			buff[indexBuff] = arr[indexLeftArray];
+			indexLeftArray++;
+			indexBuff++;
+		}
+
+		while (indexRightArray < size)
+		{
+			buff[indexBuff] = arr[indexRightArray];
+			indexRightArray++;
+			indexBuff++;
+		}
+		memcpy(arr, buff, size * sizeof(int));
+	}
+
+	virtual void sortRecursive(T* arr, const int size, T* buff, int depthRecursive) = 0;
 };

@@ -12,10 +12,5 @@ if (OPENMP_FOUND)
 endif()
 
 add_executable(CourseWork 
-                CourseWork/CourseWork.cpp
-                CourseWork/DataGenerator.cpp
-                CourseWork/MergeSortBase.cpp 
-                CourseWork/MergeSort.cpp 
-                CourseWork/OMPMergeSort.cpp
-                CourseWork/ThreadMergeSort.cpp
-		CourseWork/Tester.cpp)
+               CourseWork/CourseWork.cpp
+               CourseWork/DataGenerator.cpp)

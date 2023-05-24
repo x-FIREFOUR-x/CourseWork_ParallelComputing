@@ -49,22 +49,22 @@ int main(int args, char* argv[])
 	int size = 0;
 	int* inputArr = FileWorker<int>::readArray(filename, size);
 
-	Tester tester(inputArr, size);
+	Tester<int> tester(inputArr, size);
 
 	// Sequential merge sort
 	cout << "\n<Sequential merge sort>" << endl;
-	MergeSortBase* mergeSort = new MergeSort();
+	MergeSortBase<int>* mergeSort = new MergeSort<int>();
 	tester.testMergeSort(mergeSort, inputArr, size, countTests);
 
 	// Parallel merge sort (Thread)
 	cout << "\n<Parallel merge sort (Thread)>" << endl;
-	MergeSortBase* threadMergeSort = new ThreadMergeSort();
+	MergeSortBase<int>* threadMergeSort = new ThreadMergeSort<int>();
 	tester.testMergeSort(threadMergeSort, inputArr, size, countTests, countThreads);
 
 	// Parallel merge sort (OpenMP)
 #ifndef _MSC_VER
 	cout << "\n<Parallel merge sort (OpenMP)>" << endl;
-	MergeSortBase* ompMergeSort = new OMPMergeSort();
+	MergeSortBase<int>* ompMergeSort = new OMPMergeSort<int>();
 	tester.testMergeSort(ompMergeSort, inputArr, size, countTests, countThreads);
 #endif
 
