@@ -5,6 +5,7 @@
 #include "MergeSortBase.h"
 #include "MergeSort.h"
 
+#include <functional>
 #include <omp.h>
 
 using namespace std;
@@ -17,8 +18,9 @@ private:
 	MergeSort<T> mergeSort;
 
 public:
-	void sort(T* arr, const int size, const int countThreads = 1) override
+	void sort(T* arr, const int size, const function<bool(T, T)>& comparator, const int countThreads = 1) override
 	{
+		this->comparator = comparator;
 		T* buff = new T[size];
 
 		omp_set_dynamic(0);
@@ -37,7 +39,7 @@ private:
 	{
 		if (size <= sizeTask)
 		{
-			mergeSort.sort(arr, size);
+			mergeSort.sort(arr, size, this->comparator);
 			return;
 		}
 

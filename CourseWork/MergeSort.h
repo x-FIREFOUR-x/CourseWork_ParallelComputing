@@ -7,8 +7,9 @@ template <class T>
 class MergeSort : public MergeSortBase<T>
 {
 public:
-	void sort(T* arr, const int size, const int = 1) override
+	void sort(T* arr, const int size, const function<bool(T, T)>& comparator, const int = 1) override
 	{
+		this->comparator = comparator;
 		T* buff = new T[size];
 
 		sortRecursive(arr, size, buff, 1);

@@ -16,9 +16,6 @@
     <Filter Include="Header Files\MergeSort">
       <UniqueIdentifier>{abba8a2d-7e54-4951-a01d-bfaa692fd595}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\MergeSort">
-      <UniqueIdentifier>{c03ec89f-3e56-407f-abf7-ce2410fcc2a2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\HelpTool">
       <UniqueIdentifier>{752d1cda-1300-49f5-be38-11cd642c9b48}</UniqueIdentifier>
     </Filter>
@@ -27,26 +24,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MergeSort.cpp">
-      <Filter>Source Files\MergeSort</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeSortBase.cpp">
-      <Filter>Source Files\MergeSort</Filter>
-    </ClCompile>
-    <ClCompile Include="OMPMergeSort.cpp">
-      <Filter>Source Files\MergeSort</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadMergeSort.cpp">
-      <Filter>Source Files\MergeSort</Filter>
-    </ClCompile>
     <ClCompile Include="DataGenerator.cpp">
       <Filter>Source Files\HelpTool</Filter>
     </ClCompile>
     <ClCompile Include="CourseWork.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tester.cpp">
-      <Filter>Source Files\HelpTool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

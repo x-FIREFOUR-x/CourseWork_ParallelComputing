@@ -49,7 +49,9 @@ int main(int args, char* argv[])
 	int size = 0;
 	int* inputArr = FileWorker<int>::readArray(filename, size);
 
-	Tester<int> tester(inputArr, size);
+	auto comparator = [](int a, int b) {return a < b; };
+
+	Tester<int> tester(inputArr, size, comparator);
 
 	// Sequential merge sort
 	cout << "\n<Sequential merge sort>" << endl;

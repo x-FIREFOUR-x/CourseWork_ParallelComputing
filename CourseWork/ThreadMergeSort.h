@@ -12,8 +12,9 @@ private:
 	int maxDepth;
 
 public:
-	void sort(T* arr, const int size, const int countThread) override
+	void sort(T* arr, const int size, const function<bool(T, T)>& comparator, const int countThread) override
 	{
+		this->comparator = comparator;
 		maxDepth = ceil(log2(countThread));
 		T* buff = new T[size];
 

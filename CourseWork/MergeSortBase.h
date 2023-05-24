@@ -2,14 +2,18 @@
 
 #include <iostream>
 #include <algorithm>
+#include <functional>
 
 using namespace std;
 
 template <class T>
 class MergeSortBase
 {
+protected:
+	function<bool(T, T)> comparator;
+
 public:
-	virtual void sort(T* arr, const int size, int countThreads = 1) = 0;
+	virtual void sort(T* arr, const int size, const function<bool(T, T)>& comparator, int countThreads = 1) = 0;
 
 protected:
 	void merge(T* arr, const int size, T* buff)
@@ -22,7 +26,7 @@ protected:
 		int indexBuff = 0;
 		while (indexLeftArray < mid && indexRightArray < size)
 		{
-			if (arr[indexLeftArray] < arr[indexRightArray])
+			if (comparator(arr[indexLeftArray], arr[indexRightArray]))
 			{
 				buff[indexBuff] = arr[indexLeftArray];
 				indexLeftArray++;

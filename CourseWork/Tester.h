@@ -4,6 +4,7 @@
 #include <iostream>
 #include <omp.h>
 #include <algorithm>
+#include <functional>
 
 using namespace std;
 
@@ -13,12 +14,15 @@ class Tester
 private:
 	T* correctArray;
 
+	function<bool(T, T)> comparator;
+
 public:
-	Tester(const T* inputArr, const int sizeArray)
+	Tester(const T* inputArr, const int sizeArray, const function<bool(T, T)>& comparator)
 	{
+		this->comparator = comparator;
 		correctArray = new T[sizeArray];
 		copy(inputArr, inputArr + sizeArray, correctArray);
-		sort(correctArray, correctArray + sizeArray);
+		sort(correctArray, correctArray + sizeArray, comparator);
 	}
 
 	~Tester()
@@ -38,7 +42,7 @@ public:
 
 			double startTime = omp_get_wtime();
 
-			mergeSort->sort(arr, sizeArray, countThreads);
+			mergeSort->sort(arr, sizeArray, comparator, countThreads);
 
 			double timeCurrentTest = omp_get_wtime() - startTime;
 			cout << "   test" << i + 1 << " time: " << timeCurrentTest << "s.\n";
