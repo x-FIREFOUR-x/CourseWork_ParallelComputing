@@ -14,10 +14,10 @@ class Tester
 private:
 	T* correctArray;
 
-	function<bool(T, T)> comparator;
+	bool (*comparator)(int, int);
 
 public:
-	Tester(const T* inputArr, const int sizeArray, const function<bool(T, T)>& comparator)
+	Tester(const T* inputArr, const int sizeArray, bool(*comparator)(int, int))
 	{
 		this->comparator = comparator;
 		correctArray = new T[sizeArray];

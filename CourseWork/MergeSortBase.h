@@ -10,10 +10,10 @@ template <class T>
 class MergeSortBase
 {
 protected:
-	function<bool(T, T)> comparator;
+	bool (*comparator)(T, T);
 
 public:
-	virtual void sort(T* arr, const int size, const function<bool(T, T)>& comparator, int countThreads = 1) = 0;
+	virtual void sort(T* arr, const int size, bool(*comparator)(T, T), int countThreads = 1) = 0;
 
 protected:
 	void merge(T* arr, const int size, T* buff)

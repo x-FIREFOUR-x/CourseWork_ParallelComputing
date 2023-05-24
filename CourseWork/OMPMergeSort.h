@@ -18,7 +18,7 @@ private:
 	MergeSort<T> mergeSort;
 
 public:
-	void sort(T* arr, const int size, const function<bool(T, T)>& comparator, const int countThreads = 1) override
+	void sort(T* arr, const int size, bool(*comparator)(T, T), const int countThreads = 1) override
 	{
 		this->comparator = comparator;
 		T* buff = new T[size];
